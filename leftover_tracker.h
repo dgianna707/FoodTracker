@@ -2,6 +2,8 @@
 #define LEFTOVER_TRACKER_H_
 #include <iostream>
 #include <vector>
+#include "leftover_record.h"
+#include "leftover_report.h"
 
 // <Gianna Davila>
 // <CPSC 121L-15> (e.g. CPSC 121L-01)
