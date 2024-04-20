@@ -31,7 +31,7 @@ void LeftoverRecord::SetQuantityInOz(double qty_in_oz) {
   qty_in_oz_ = std::move(qty_in_oz);
 }
 void LeftoverRecord::SetLeftoverReason(const std::string &leftover_reason) {
-  leftover_reason_ = std::move(leftover_reason)
+  leftover_reason_ = std::move(leftover_reason);
 }
 void LeftoverRecord::SetDisposalMechanism(
     const std::string &disposal_mechanism) {

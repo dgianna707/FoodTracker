@@ -44,6 +44,7 @@ class LeftoverRecord {
   std::string GetLeftoverReason() const;
   std::string GetDisposalMechanism() const;
   double GetCost() const;
+
 };
 
 #endif
