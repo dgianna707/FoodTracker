@@ -24,11 +24,17 @@
 
 bool LeftoverTracker::AddRecord(const LeftoverRecord &record) {
     // Check if the record already exists in a vector
-    for (const auto &existing_record : leftover_records_) {
-        if (existing_record == record){
-             return false;} // Duplicate record found, return false
+    for (LeftoverRecord records : leftover_records_) {
+        if (records.GetDate() == record.GetDate() &&
+            records.GetMeal() == record.GetMeal() &&
+            records.GetFoodName() == record.GetFoodName() &&
+            records.GetQuantityInOz() == record.GetQuantityInOz() &&
+            records.GetLeftoverReason() == record.GetLeftoverReason() &&
+            records.GetDisposalMechanism() == record.GetDisposalMechanism() &&
+            records.GetCost() == record.GetCost()) {
+                return false;
+            }
         }
-    // If not a duplicate, adds to vector
     leftover_records_.push_back(record);
     return true;
 }
