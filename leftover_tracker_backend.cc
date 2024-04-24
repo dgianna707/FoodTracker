@@ -284,6 +284,7 @@ bool LeftoverTrackerBackend::LoadRecordsFromJSONFile() {
        ++itr) {
       LeftoverRecord record = DeserializeLeftoverRecordFromJSON(*itr);
       // TODO: Call the member function in the LeftoverTracker class to add a `record`
+      leftover_tracker_.AddRecord(record);
   }
 
   records_file.close();
@@ -322,7 +323,7 @@ crow::json::wvalue LeftoverTrackerBackend::AddRecord(
   LeftoverRecord record = QueryStringToLeftoverRecord(query_string);
   crow::json::wvalue status;
     
-  bool add_result = false;
+  bool add_result = leftover_tracker_.AddRecord(record);
   // TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that adds a
   // `record` and returns the status of the add operation as a bool. Store the
@@ -349,7 +350,7 @@ crow::json::wvalue LeftoverTrackerBackend::DeleteRecord(
 
 crow::json::wvalue LeftoverTrackerBackend::GetRecords() const {
 
-  std::vector<LeftoverRecord> records;
+  std::vector<LeftoverRecord> records = leftover_tracker_.GetRecords();
   // TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that returns all
   // the LeftoverRecord objects. Store the returned records in the vector
@@ -369,7 +370,7 @@ crow::json::wvalue LeftoverTrackerBackend::GetRecords() const {
 }
 
 crow::json::wvalue LeftoverTrackerBackend::GetLeftoverReport() const {
-  LeftoverReport generated_report;
+  LeftoverReport generated_report = leftover_tracker_.GetLeftoverReport();
   // TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that generates a
   // LeftoverReport object using all the LeftoverRecords and returns it.

@@ -4,7 +4,9 @@
 // <dgianna@csu.fullerton.edu>
 // <dgianna707>
 //
-
+#include <iostream>
+#include <vector>
+#include "leftover_record.h"
 #include "leftover_tracker.h"
 
 // ========================= YOUR CODE HERE =========================
@@ -19,4 +21,24 @@
 // to tell the compiler that each function belongs to the LeftoverTracker
 // class.
 // ===================================================================
+
+bool LeftoverTracker::AddRecord(const LeftoverRecord &record) {
+    // Check if the record already exists in a vector
+    for (const auto &existing_record : leftover_records_) {
+        if (existing_record == record){
+             return false;} // Duplicate record found, return false
+        }
+    // If not a duplicate, adds to vector
+    leftover_records_.push_back(record);
+    return true;
+}
+
+const std::vector<LeftoverRecord>& LeftoverTracker::GetRecords() const {
+    return leftover_records_;
+}
+
+LeftoverReport LeftoverTracker::GetLeftoverReport() const {
+    return LeftoverReport(leftover_records_);
+}
+
 
