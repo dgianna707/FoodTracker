@@ -339,8 +339,7 @@ crow::json::wvalue LeftoverTrackerBackend::GetRecords() const {
   return records_json;
 }
 
-crow::json::wvalue LeftoverTrackerBackend::GetLeftoverReport() const {
-  LeftoverReport generated_report = leftover_tracker_.GetLeftoverReport();
-
-  return LeftoverReportToCrowJSON(generated_report);
-}
+//crow::json::wvalue LeftoverTrackerBackend::GetLeftoverReport() const {
+//  LeftoverReport generated_report = leftover_tracker_.GetLeftoverReport();
+ // return LeftoverReportToCrowJSON(generated_report);
+//}
