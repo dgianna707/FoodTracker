@@ -28,13 +28,14 @@ LeftoverReport::LeftoverReport(
     const std::vector<LeftoverRecord>& leftover_records)
      : leftover_records_(leftover_records) {}
 
-std::vector<std::string> LeftoverReport::MostCommonlLeftover() {
+std::vector<std::string> LeftoverReport::MostCommonlLeftover() const{
   std::map<std::string, int> common_leftover_map = {};
   for(LeftoverRecord record : leftover_records_){
     common_leftover_map.insert({record.GetFoodName(), 0});
     common_leftover_map[record.GetFoodName()]++;
-
+  }
     int leftover_count = 0; 
+    std::vector<std::string> temp_common_leftover;
     for(auto& it : common_leftover_map){
       if(it.second > leftover_count){
         leftover_count = it.second;
@@ -42,13 +43,12 @@ std::vector<std::string> LeftoverReport::MostCommonlLeftover() {
     }
 
     for(auto& it : common_leftover_map){
-      if(it.second == common_leftover_map){
-        most_common_leftover_.pushback(it.first);
+      if(it.second == leftover_count){
+        temp_common_leftover.push_back(it.first);
       }
     }
-    return most_common_leftover_;
-  }
-}
+    return temp_common_leftover;
+ }
 
 std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals()
     const {

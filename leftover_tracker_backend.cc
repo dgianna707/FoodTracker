@@ -22,6 +22,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 1. Use the accessor/getter function for date from the
   // LeftoverRecord class object to get the date and store it in the date
   // string declared above.
+  
   writer->String(date.c_str());
 
   writer->String("meal_"); // DO NOT MODIFY
