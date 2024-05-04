@@ -128,45 +128,52 @@ crow::json::wvalue LeftoverRecordToCrowJSON(const LeftoverRecord &record) {
   crow::json::wvalue record_json({});
     
   std::string date;
-  // TODO 1. Use the accessor/getter function for date from the
+  // *TODO 1. Use the accessor/getter function for date from the
   // LeftoverRecord class object to get the date and store it in the date
   // string declared above.
+  date = record.GetDate();
   record_json["date"] = date;
 
   std::string meal;
   // TODO 2. Use the accessor/getter function for meal from the
   // LeftoverRecord class object to get the meal and store it in the meal
   // string declared above.
+  meal = record.GetDate();
   record_json["meal"] = meal;
 
   std::string food_name;
   // TODO 3. Use the accessor/getter function for food name from the
   // LeftoverRecord class object to get the food name and store it in the
   // food_name string declared above.
+  food_name = record.GetFoodName();
   record_json["food_name"] = food_name;
 
   double quantity;
   // TODO 4. Use the accessor/getter function for quantity from the
   // LeftoverRecord class object to get the quantity and store it in the
   // quantity variable declared above.
+  quantity = record.GetQuantityInOz();
   record_json["qty_in_oz"] = quantity;
 
   std::string leftover_reason;
   // TODO 5. Use the accessor/getter function for leftover reason from the
   // LeftoverRecord class object to get the leftover reason and store it in
   // the leftover_reason string declared above.
+  leftover_reason = record.GetFoodName();
   record_json["leftover_reason"] = leftover_reason;
 
   std::string disposal_mechanism;
   // TODO 6. Use the accessor/getter function for disposal mechanism from the
   // LeftoverRecord class object to get the disposal mechanism and store it
   // in the disposal_mechanism string declared above.
+  disposal_mechanism = record.GetDisposalMechanism();
   record_json["disposal_mechanism"] = disposal_mechanism;
 
   double cost;
   // TODO 7. Use the accessor/getter function for cost from the
   // LeftoverRecord class object to get the cost and store it in the cost
   // variable declared above.
+  cost = record.GetCost(); 
   record_json["cost"] = cost;
     
   return record_json;
@@ -223,33 +230,39 @@ LeftoverRecord QueryStringToLeftoverRecord(
     const crow::query_string &query_string) {
   LeftoverRecord record{};
     
-  // TODO 1. Get the date from the query_string using query_string.get("date"),
+  // *TODO 1. Get the date from the query_string using query_string.get("date"),
   // and set it in the `record` object using the setter in LeftoverRecord
   // class.
+  record.SetDate(query_string.get("date"));
 
-  // TODO 2. Get the meal from the query_string using query_string.get("meal"),
+  // *TODO 2. Get the meal from the query_string using query_string.get("meal"),
   // and set it in the `record` object using the setter in LeftoverRecord
   // class.
+  record.SetMeal(query_string.get("meal"));
 
-  // TODO 3. Get the food name from the query_string using
+  // *TODO 3. Get the food name from the query_string using
   // query_string.get("food_name"), and set it in the `record` object using the
   // setter in LeftoverRecord class.
+  record.SetFoodName(query_string.get("food_name"));
 
-  // TODO 4. Get the quantity from the query_string using
+  // *TODO 4. Get the quantity from the query_string using
   // std::stod(query_string.get("qty_in_oz")), and set it in the `record` object
   // using the setter in LeftoverRecord class.
-
-  // TODO 5. Get the leftover reason from the query_string using
+  record.SetQuantityInOz(std::stod(query_string.get("qty_in_oz")));
+  // *TODO 5. Get the leftover reason from the query_string using
   // query_string.get("leftover_reason"), and set it in the `record` object using
   // the setter in LeftoverRecord class.
+  record.SetLeftoverReason(query_string.get("leftover_reason"));
 
-  // TODO 6. Get the disposal mechanism from the query_string using
+  // *TODO 6. Get the disposal mechanism from the query_string using
   // query_string.get("disposal_mechanism"), and set it in the `record` object
   // using the setter in LeftoverRecord class.
+  record.SetDisposalMechanism(query_string.get("disposal_mechanism"));
 
-  // TODO 7. Get the cost from the query_string using
+  // *TODO 7. Get the cost from the query_string using
   // std::stod(query_string.get("cost")), and set it in the `record` object
   // using the setter in LeftoverRecord class.
+  record.SetCost(std::stod(query_string.get("cost")));
     
   return record;
 }
@@ -350,8 +363,8 @@ crow::json::wvalue LeftoverTrackerBackend::DeleteRecord(
 
 crow::json::wvalue LeftoverTrackerBackend::GetRecords() const {
 
-  std::vector<LeftoverRecord> records = leftover_tracker_.GetRecords();
-  // TODO: Call the member function in the LeftoverTracker class, on the
+  const std::vector<LeftoverRecord>& records = leftover_tracker_.GetRecords();
+  // *TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that returns all
   // the LeftoverRecord objects. Store the returned records in the vector
   // declared above. Also change the data type of the records vector to `const
@@ -371,10 +384,6 @@ crow::json::wvalue LeftoverTrackerBackend::GetRecords() const {
 
 crow::json::wvalue LeftoverTrackerBackend::GetLeftoverReport() const {
   LeftoverReport generated_report = leftover_tracker_.GetLeftoverReport();
-  // TODO: Call the member function in the LeftoverTracker class, on the
-  // member object that you added in leftover_tracker.h, that generates a
-  // LeftoverReport object using all the LeftoverRecords and returns it.
-  // Store the returned value in the `generated_report` object declared above.
-  
+
   return LeftoverReportToCrowJSON(generated_report);
 }
