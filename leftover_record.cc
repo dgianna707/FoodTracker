@@ -27,6 +27,9 @@ void LeftoverRecord::SetDate(const std::string &date) {
 void LeftoverRecord::SetMeal(const std::string &meal) {
   meal_ = std::move(meal);
 }
+void LeftoverRecord::SetFoodName(const std::string &food_name) {
+  food_name_ = std::move(food_name);
+}
 void LeftoverRecord::SetQuantityInOz(double qty_in_oz) {
   qty_in_oz_ = std::move(qty_in_oz);
 }
