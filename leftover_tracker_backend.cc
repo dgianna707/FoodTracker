@@ -22,7 +22,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 1. Use the accessor/getter function for date from the
   // LeftoverRecord class object to get the date and store it in the date
   // string declared above.
-  
+  date = record.GetDate();
   writer->String(date.c_str());
 
   writer->String("meal_"); // DO NOT MODIFY
@@ -30,6 +30,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 2. Use the accessor/getter function for meal from the
   // LeftoverRecord class object to get the meal and store it in the meal
   // string declared above.
+  meal = record.GetMeal();
   writer->String(meal.c_str());
 
   writer->String("food_name_"); // DO NOT MODIFY
@@ -37,6 +38,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 3. Use the accessor/getter function for food name from the
   // LeftoverRecord class object to get the food name and store it in the
   // food_name string declared above.
+  food_name = record.GetFoodName();
   writer->String(food_name.c_str());
 
   writer->String("qty_in_oz_"); // DO NOT MODIFY
@@ -44,6 +46,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 4. Use the accessor/getter function for quantity from the
   // LeftoverRecord class object to get the quantity and store it in the
   // quantity variable declared above.
+  quantity = record.GetQuantityInOz();
   writer->Double(quantity);
 
   writer->String("leftover_reason_");// DO NOT MODIFY
@@ -51,6 +54,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 5. Use the accessor/getter function for leftover reason from the
   // LeftoverRecord class object to get the leftover reason and store it in
   // the leftover_reason string declared above.
+  leftover_reason = record.GetLeftoverReason();
   writer->String(leftover_reason.c_str());
 
   writer->String("disposal_mechanism_"); // DO NOT MODIFY
@@ -58,6 +62,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 6. Use the accessor/getter function for disposal mechanism from the
   // LeftoverRecord class object to get the disposal mechanism and store it
   // in the disposal_mechanism string declared above.
+  disposal_mechanism = record.GetDisposalMechanism();
   writer->String(disposal_mechanism.c_str());
 
   writer->String("cost_"); // DO NOT MODIFY
@@ -65,6 +70,7 @@ void SerializeLeftoverRecordToJSON(
   // TODO 7. Use the accessor/getter function for cost from the
   // LeftoverRecord class object to get the cost and store it in the cost
   // variable declared above.
+  cost = record.GetCost();
   writer->Double(cost);
 
 
@@ -80,12 +86,14 @@ LeftoverRecord DeserializeLeftoverRecordFromJSON(const rapidjson::Value &json_ob
      *  object as follows: `json_obj["date_"].GetString()`.
      *  Use that as a function  argument for the mutator that you'll call.
      */
+    record.SetDate(json_obj["date_"].GetString());
 
     /* TODO 2. Use the mutator/setter function for meal from the LeftoverRecord
      *  class to set the meal in `record` object. You can get the meal from JSON
      *  object as follows: `json_obj["meal_"].GetString()`.
      *  Use that as a function  argument for the mutator that you'll call.
      */
+    record.SetMeal(json_obj["meal_"].GetString());
 
     /* TODO 3. Use the mutator/setter function for food name from the
      * LeftoverRecord class to set the food name in `record` object. You can
@@ -93,6 +101,7 @@ LeftoverRecord DeserializeLeftoverRecordFromJSON(const rapidjson::Value &json_ob
      * `json_obj["food_name_"].GetString()`. Use that as a function  argument for
      * the mutator that you'll call.
      */
+    record.SetFoodName(json_obj["food_name_"].GetString());
 
     /* TODO 4. Use the mutator/setter function for quantity from the
      * LeftoverRecord class to set the quantity in `record` object. You can get
@@ -100,6 +109,7 @@ LeftoverRecord DeserializeLeftoverRecordFromJSON(const rapidjson::Value &json_ob
      * `json_obj["qty_in_oz_"].GetDouble()`. Use that as an function  argument for
      * the mutator that you'll call.
      */
+    record.SetQuantityInOz(json_obj["qty_in_oz_"].GetDouble());
 
     /* TODO 5. Use the mutator/setter function for leftover reason from the
      * LeftoverRecord class to set the leftover reason in `record` object. You
@@ -107,6 +117,7 @@ LeftoverRecord DeserializeLeftoverRecordFromJSON(const rapidjson::Value &json_ob
      * `json_obj["leftover_reason_"].GetString()`. Use that as a function argument
      * for the mutator that you'll call.
      */
+    record.SetLeftoverReason(json_obj["leftover_reason_"].GetString());
 
     /* TODO 6. Use the mutator/setter function for disposal mechanism from the
      * LeftoverRecord class to set the disposal mechanism in `record` object.
@@ -114,12 +125,15 @@ LeftoverRecord DeserializeLeftoverRecordFromJSON(const rapidjson::Value &json_ob
      * `json_obj["disposal_mechanism_"].GetString()`. Use that as an function
      * argument for the mutator that you'll call.
      */
+    record.SetDisposalMechanism(json_obj["disposal_mechanism_"].GetString());
+
 
     /* TODO 7. Use the mutator/setter function for cost from the LeftoverRecord
      *  class to set the cost in `record` object. You can get the cost from the JSON
      *  object as follows: `json_obj["cost_"].GetDouble()`.
      *  Use that as an function  argument for the mutator that you'll call.
      */
+    record.SetCost(json_obj["cost_"].GetDouble());
   return record;
 }
 
@@ -275,7 +289,7 @@ bool LeftoverTrackerBackend::WriteRecordsToJSONFile() const {
   rapidjson::Writer<rapidjson::StringBuffer> writer(ss);
   writer.StartArray();
 
-  std::vector<LeftoverRecord> records;
+  const std::vector<LeftoverRecord>& records = leftover_tracker_.GetRecords();
   // TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that returns all
   // the LeftoverRecord objects. Store the returned records in the vector

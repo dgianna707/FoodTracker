@@ -44,7 +44,7 @@ class LeftoverRecord {
   std::string GetLeftoverReason() const;
   std::string GetDisposalMechanism() const;
   double GetCost() const;
-  bool operator==(const LeftoverRecord& otherx) const;
+  //bool operator==(const LeftoverRecord& otherx) const;
 
 };
 

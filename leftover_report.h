@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include<unordered_map>
 #include "leftover_record.h"
 // ======================= YOUR CODE HERE =======================
 // Write the LeftoverReport class here. Refer to your class design for the
@@ -44,6 +45,7 @@ class LeftoverReport {
   /// @brief 
   /// @return 
   std::vector<std::string> SuggestLeftoverReductionStrategies() const;
+  bool operator<(const LeftoverReport& other) const; 
 };
 
 #endif

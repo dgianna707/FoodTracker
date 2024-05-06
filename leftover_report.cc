@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include<unordered_map>
 
 #include "leftover_report.h"
 // ========================= YOUR CODE HERE =========================
@@ -50,9 +51,31 @@ std::vector<std::string> LeftoverReport::MostCommonlLeftover() const{
     return temp_common_leftover;
  }
 
-std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals()
-    const {
-  return std::vector<std::string>();
+std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() const {
+  std::unordered_map<std::string, int> mealCount;
+
+  // counting occurences of each meal's cost
+  for(LeftoverRecord meal : leftover_records_) {
+    mealCount[meal.GetMeal()]++;
+  }
+  // making vector to keep track of the meals
+  std::vector<std::string> MostCostlyLeftOverMeals;
+  int max = 0;
+  // finding our max count
+  for(auto& pair : mealCount) {
+    if (pair.second > max) {
+      max = pair.second;
+    }
+  }
+  // finding the meal w/ the max count 
+  for (auto& pair : mealCount) {
+    if (pair.second == max){
+      MostCostlyLeftOverMeals.push_back(pair.first);
+    }
+  }
+
+  return MostCostlyLeftOverMeals;
+
 }
 
 double LeftoverReport::TotalCostOfLeftover() const { return total_cost_of_leftovers_; }
@@ -69,3 +92,5 @@ std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
     const {
   return std::vector<std::string>();
 }
+
+
