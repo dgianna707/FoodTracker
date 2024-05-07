@@ -52,9 +52,9 @@ std::vector<std::string> LeftoverReport::MostCommonlLeftover() const{
  }
 
 std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() const {
-    // making vector to keep track of the meals
+  // making vector to keep track of the meals
   std::vector<std::string> MostCostlyLeftOverMeals;
-  int max = 0;
+  // creating our map to look for tally counts of costly meals
   std::unordered_map<std::string, int> mealCount;
 
   // counting occurences of each meal's cost
@@ -63,6 +63,7 @@ std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() cons
   }
 
   // finding our max count
+  int max = 0;
   for(auto& pair : mealCount) {
     if (pair.second > max) {
       max = pair.second;
@@ -89,8 +90,10 @@ double LeftoverReport::TotalCostOfLeftover() const {
 }
 
 std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
+  std::vector<std::string> MostCommonLeftover; 
   std::unordered_map<std::string, int> CommonLeftoverCount;
-
+  
+  int max = 0;
 
 }
 
