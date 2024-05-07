@@ -52,15 +52,16 @@ std::vector<std::string> LeftoverReport::MostCommonlLeftover() const{
  }
 
 std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() const {
+    // making vector to keep track of the meals
+  std::vector<std::string> MostCostlyLeftOverMeals;
+  int max = 0;
   std::unordered_map<std::string, int> mealCount;
 
   // counting occurences of each meal's cost
   for(LeftoverRecord meal : leftover_records_) {
     mealCount[meal.GetMeal()]++;
   }
-  // making vector to keep track of the meals
-  std::vector<std::string> MostCostlyLeftOverMeals;
-  int max = 0;
+
   // finding our max count
   for(auto& pair : mealCount) {
     if (pair.second > max) {
@@ -78,10 +79,19 @@ std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() cons
 
 }
 
-double LeftoverReport::TotalCostOfLeftover() const { return total_cost_of_leftovers_; }
+double LeftoverReport::TotalCostOfLeftover() const { 
+  double totalCost = 0.0; 
+
+  for(LeftoverRecord record : leftover_records_){
+    totalCost += record.GetCost(); 
+  }
+  return totalCost; 
+}
 
 std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
-  return std::vector<std::string>();
+  std::unordered_map<std::string, int> CommonLeftoverCount;
+
+
 }
 
 std::vector<std::string> LeftoverReport::MostCommonDisposalMechanisms() const {

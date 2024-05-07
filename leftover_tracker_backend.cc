@@ -290,7 +290,7 @@ bool LeftoverTrackerBackend::WriteRecordsToJSONFile() const {
   writer.StartArray();
 
   const std::vector<LeftoverRecord>& records = leftover_tracker_.GetRecords();
-  // TODO: Call the member function in the LeftoverTracker class, on the
+  // ^TODO: Call the member function in the LeftoverTracker class, on the
   // member object that you added in leftover_tracker.h, that returns all
   // the LeftoverRecord objects. Store the returned records in the vector
   // declared above. Also change the data type of the records vector to `const
