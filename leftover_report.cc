@@ -94,6 +94,11 @@ std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
   std::unordered_map<std::string, int> CommonLeftoverCount;
   
   int max = 0;
+  
+  // counting occurence of each leftover
+  for(LeftoverRecord record : leftover_records_) {
+    CommonLeftoverCount[record.GetFoodName()]++;
+  }
 
 }
 
