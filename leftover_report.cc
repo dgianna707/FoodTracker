@@ -91,19 +91,33 @@ double LeftoverReport::TotalCostOfLeftover() const {
 
 std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
   std::vector<std::string> MostCommonLeftover; 
-  std::unordered_map<std::string, int> CommonLeftoverCount;
-  
-  int max = 0;
+  std::unordered_map<std::string, int>::iterator::CommonLeftoverCount;
   
   // counting occurence of each leftover
   for(LeftoverRecord record : leftover_records_) {
     CommonLeftoverCount[record.GetFoodName()]++;
   }
 
+  // need to find our max
+  int max = 0;
+  for(auto& pair : CommonLeftoverCount) {
+    if (pair.second > max) {
+     max = pair.second; 
+    }
+  }
+
+  for(auto& pair : MostCommonLeftover) {
+    if (pair.second == max) {
+      MostCommonLeftover.push_back(pair.second);
+    }
+  }
+  return MostCommonLeftover;
+
 }
 
 std::vector<std::string> LeftoverReport::MostCommonDisposalMechanisms() const {
-  return std::vector<std::string>();
+  std::vector<std::string> MostCommonDisposal;
+  std::unordered_map<std::string, int> CommonDisposalCount;
 }
 
 std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
