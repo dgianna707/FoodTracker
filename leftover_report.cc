@@ -55,7 +55,7 @@ std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() cons
   // making vector to keep track of the meals
   std::vector<std::string> MostCostlyLeftOverMeals;
   // creating our map to look for tally counts of costly meals
-  std::unordered_map<std::string, int> mealCount;
+  std::map<std::string, int> mealCount;
 
   // counting occurences of each meal's cost
   for(LeftoverRecord meal : leftover_records_) {
@@ -91,7 +91,7 @@ double LeftoverReport::TotalCostOfLeftover() const {
 
 std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
   std::vector<std::string> MostCommonLeftover; 
-  std::unordered_map<std::string, int> CommonLeftoverCount;
+  std::map<std::string, int> CommonLeftoverCount;
   
   // counting occurence of each leftover
   for(LeftoverRecord record : leftover_records_) {
@@ -118,7 +118,7 @@ std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
 
 std::vector<std::string> LeftoverReport::MostCommonDisposalMechanisms() const {
   std::vector<std::string> MostCommonDisposal; 
-  std::unordered_map<std::string, int> CommonDisposalCount;
+  std::map<std::string, int> CommonDisposalCount;
   
   // counting occurence of each leftover
   for(LeftoverRecord record : leftover_records_) {
@@ -146,8 +146,8 @@ std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
     const {
         std::vector<std::string> MostCommonLeftover; 
         std::vector<std::string> SuggestedStrategies;
-        std::unordered_map<std::string, int> DuplicateChecker;
-  std::unordered_map<std::string, int> CommonLeftoverCount;
+        std::map<std::string, int> DuplicateChecker;
+  std::map<std::string, int> CommonLeftoverCount;
   
   // counting occurence of each leftover
   for(LeftoverRecord record : leftover_records_) {
@@ -193,6 +193,13 @@ std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
   for(const auto& pair : DuplicateChecker) {
       SuggestedStrategies.push_back(pair.first);
   }
+  
+  if (SuggestedStrategies.size() == 4){
+    SuggestedStrategies.pop_back();
+    SuggestedStrategies.pop_back();
+    SuggestedStrategies.push_back("Recycle left overs");
+  }
+
 
   return SuggestedStrategies;
 
