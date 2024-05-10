@@ -59,7 +59,7 @@ std::vector<std::string> LeftoverReport::MostCostlyLeftoverProducingMeals() cons
 
   // counting occurences of each meal's cost
   for(LeftoverRecord meal : leftover_records_) {
-    mealCount[meal.GetMeal()]++;
+    mealCount[meal.GetMeal()] += meal.GetCost();
   }
 
   // finding our max count
@@ -95,8 +95,8 @@ std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
   
   // counting occurence of each leftover
   for(LeftoverRecord record : leftover_records_) {
-    CommonLeftoverCount.insert({record.GetFoodName(), 0});
-    CommonLeftoverCount[record.GetFoodName()]++;
+    CommonLeftoverCount.insert({record.GetLeftoverReason(), 0});
+    CommonLeftoverCount[record.GetLeftoverReason()]++;
   }
 
   // need to find our max
@@ -117,15 +117,85 @@ std::vector<std::string> LeftoverReport::MostCommonLeftoverReasons() const {
 }
 
 std::vector<std::string> LeftoverReport::MostCommonDisposalMechanisms() const {
-  //std::vector<std::string> MostCommonDisposal;
- // std::unordered_map<std::string, int> CommonDisposalCount;
-  //return CommonDisposalCount;
-  return std::vector<std::string>();
+  std::vector<std::string> MostCommonDisposal; 
+  std::unordered_map<std::string, int> CommonDisposalCount;
+  
+  // counting occurence of each leftover
+  for(LeftoverRecord record : leftover_records_) {
+    CommonDisposalCount.insert({record.GetDisposalMechanism(), 0});
+    CommonDisposalCount[record.GetDisposalMechanism()]++;
+  }
+
+  // need to find our max
+  int max = 0;
+  for(const auto& pair : CommonDisposalCount) {
+    if (pair.second > max) {
+     max = pair.second; 
+    }
+  }
+
+  for(const auto& pair : CommonDisposalCount) {
+    if (pair.second == max) {
+      MostCommonDisposal.push_back(pair.first);
+    }
+  }
+  return MostCommonDisposal;
 }
 
 std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
     const {
-  return std::vector<std::string>();
+        std::vector<std::string> MostCommonLeftover; 
+        std::vector<std::string> SuggestedStrategies;
+        std::unordered_map<std::string, int> DuplicateChecker;
+  std::unordered_map<std::string, int> CommonLeftoverCount;
+  
+  // counting occurence of each leftover
+  for(LeftoverRecord record : leftover_records_) {
+    CommonLeftoverCount.insert({record.GetLeftoverReason(), 0});
+    CommonLeftoverCount[record.GetLeftoverReason()]++;
+  }
+
+  // need to find our max
+  int max = 0;
+  for(const auto& pair : CommonLeftoverCount) {
+    if (pair.second > max) {
+     max = pair.second; 
+    }
+  }
+
+  for(const auto& pair : CommonLeftoverCount) {
+    if (pair.second == max) {
+      MostCommonLeftover.push_back(pair.first);
+    }
+  }
+
+  for(const auto& it : MostCommonLeftover) {
+    if(it == "Expired") {
+      DuplicateChecker.insert({"Donate before expiration", 0});
+      //SuggestedStrategies.push_back("Donate before expiration");
+    }
+    if(it == "Tastes bad") {
+      DuplicateChecker.insert({"Buy less food", 0});
+     // SuggestedStrategies.push_back("Buy less food");
+    }
+    if(it == "Too much left overs") {
+      DuplicateChecker.insert({"Buy less food", 0});
+      DuplicateChecker.insert({"Cook small servings", 0});
+      //SuggestedStrategies.push_back("Buy less food");
+      //SuggestedStrategies.push_back("Cook small servings");
+    }
+    if(it != "Expired") {
+      DuplicateChecker.insert({"Recycle left overs", 0});
+      //SuggestedStrategies.push_back("Recycle left overs");
+    }
+  }
+
+  for(const auto& pair : DuplicateChecker) {
+      SuggestedStrategies.push_back(pair.first);
+  }
+
+  return SuggestedStrategies;
+
 }
 
 
