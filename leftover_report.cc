@@ -144,12 +144,65 @@ std::vector<std::string> LeftoverReport::MostCommonDisposalMechanisms() const {
 
 std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
     const {
-        std::vector<std::string> MostCommonLeftover; 
+      std::vector<std::string> SuggestedStrategies; 
+      bool Donate{false};
+      bool Buylessfood{false};
+      bool Cooksmaller{false};
+      bool Recycle{true};
+
+      for (std::string reason : MostCommonLeftoverReasons()) {
+        if (reason == "Expired") {
+          Donate = true;
+          Recycle = false; 
+        }
+        if (reason == "Tastes bad") {
+          Buylessfood = true;
+        }
+        if (reason == "Too much left overs"){
+          Buylessfood = true;
+          Cooksmaller = true;
+        }
+      }
+      if (Donate) {
+        SuggestedStrategies.push_back("Donate before expiration");
+      }
+      if (Buylessfood) {
+        SuggestedStrategies.push_back("Buy less food");
+      }
+      if (Cooksmaller) {
+        SuggestedStrategies.push_back("Cook small servings");
+      }
+      if(Recycle) {
+        SuggestedStrategies.push_back("Recycle left overs");
+      }
+      if (MostCommonLeftoverReasons().empty()){
+        SuggestedStrategies.clear();
+      }
+      return SuggestedStrategies;
+    }
+
+       /* std::vector<std::string> MaxReason; 
         std::vector<std::string> SuggestedStrategies;
-        std::map<std::string, int> DuplicateChecker;
-  std::map<std::string, int> CommonLeftoverCount;
+        std::map<std::string, int> LeftoverReasonCount;
+        
+        int max = 0;
+        for(const auto& reason : MostCommonLeftoverReasons()) {
+          if (LeftoverReasonCount.count(reason) == 0){
+            LeftoverReasonCount.insert({reason, 1})
+            // if (max < 1) {max = 1}
+            if(max < reason.second){
+              max = reason.second;
+            }
+          }
+          else { 
+            LeftoverReasonCount[reason]++
+            
+          } 
+
+          } */
   
   // counting occurence of each leftover
+  /*
   for(LeftoverRecord record : leftover_records_) {
     CommonLeftoverCount.insert({record.GetLeftoverReason(), 0});
     CommonLeftoverCount[record.GetLeftoverReason()]++;
@@ -193,16 +246,6 @@ std::vector<std::string> LeftoverReport::SuggestLeftoverReductionStrategies()
   for(const auto& pair : DuplicateChecker) {
       SuggestedStrategies.push_back(pair.first);
   }
-  
-  if (SuggestedStrategies.size() == 4){
-    SuggestedStrategies.pop_back();
-    SuggestedStrategies.pop_back();
-    SuggestedStrategies.push_back("Recycle left overs");
-  }
-
-
-  return SuggestedStrategies;
-
-}
+*/
 
 
