@@ -116,7 +116,7 @@ crow::json::wvalue LeftoverRecordToCrowJSON(const LeftoverRecord &record) {
 
   std::string meal;
 // meal accessor fxn
-  meal = record.GetDate();
+  meal = record.GetMeal();
   record_json["meal"] = meal;
 
   std::string food_name;
