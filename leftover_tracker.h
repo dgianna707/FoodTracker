@@ -2,6 +2,7 @@
 #define LEFTOVER_TRACKER_H_
 #include <iostream>
 #include <vector>
+
 #include "leftover_record.h"
 #include "leftover_report.h"
 
@@ -12,27 +13,15 @@
 // <dgianna707>
 //
 
-    // ======================= YOUR CODE HERE =======================
-      // Write the LeftoverTracker class here. Refer to your class design for the
-      // member variables, constructors, and member functions needed.
-      //
-      // Note: mark functions that do not modify the member variables
-      // as const, by writing `const` after the parameter list.
-      // Pass objects by const reference when appropriate.
-      // Remember that std::string is an object!
-      // ===============================================================
-
 class LeftoverTracker {
-  private:
+ private:
   std::vector<LeftoverRecord> leftover_records_;
 
-  public:
+ public:
   bool AddRecord(const LeftoverRecord &record);
   bool DeleteRecord(const LeftoverRecord &record);
   const std::vector<LeftoverRecord> &GetRecords() const;
   LeftoverReport GetLeftoverReport() const;
-
-
 };
 
 #endif

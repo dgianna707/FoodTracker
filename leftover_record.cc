@@ -47,6 +47,10 @@ std::string LeftoverRecord::GetDate() const { return date_; }
 std::string LeftoverRecord::GetMeal() const { return meal_; }
 std::string LeftoverRecord::GetFoodName() const { return food_name_; }
 double LeftoverRecord::GetQuantityInOz() const { return qty_in_oz_; }
-std::string LeftoverRecord::GetLeftoverReason() const { return leftover_reason_; }
-std::string LeftoverRecord::GetDisposalMechanism() const { return disposal_mechanism_; }
+std::string LeftoverRecord::GetLeftoverReason() const {
+  return leftover_reason_;
+}
+std::string LeftoverRecord::GetDisposalMechanism() const {
+  return disposal_mechanism_;
+}
 double LeftoverRecord::GetCost() const { return cost_; }
