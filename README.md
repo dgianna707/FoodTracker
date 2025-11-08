@@ -1,7 +1,24 @@
-# Leftover Food Tracker Project
+# 🍽️ FoodTracker
 
-Welcome to the Leftover Food Tracker project! 
+**FoodTracker** is a lightweight application designed to help users track and manage leftover food, reduce waste, and make smarter meal planning decisions.
 
-This project is intended to give you the opportunity to practice the concepts that your learned in CPSC 121.
+## 💡 Overview
+This project was built to promote sustainability by monitoring food waste patterns. It allows users to log leftovers, analyze consumption trends, and receive basic insights on how to minimize waste.
 
-See the [Project Guide](http://tiny.cc/CPSC121A-ProjectGuide) for detailed instructions.
+## ⚙️ Features
+- Add, edit, and remove leftover food items  
+- Track storage dates and expiration  
+- Generate reports to identify waste trends  
+- Simple and efficient data storage using JSON  
+- Built with object-oriented design principles in C++
+
+## 🧠 Technologies Used
+- **Language:** C++  
+- **Data Storage:** JSON  
+- **Tools:** Git, Visual Studio Code, GitHub Codespaces  
+
+## 🚀 How to Run
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/dgianna707/FoodTracker.git
+
