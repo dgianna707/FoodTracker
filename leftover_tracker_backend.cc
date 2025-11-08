@@ -17,43 +17,43 @@ void SerializeLeftoverRecordToJSON(
     rapidjson::Writer<rapidjson::StringBuffer> *writer) {
   writer->StartObject();
 
-  writer->String("date_");  // DO NOT MODIFY
+  writer->String("date_");
   std::string date;
 
   date = record.GetDate();
   writer->String(date.c_str());
 
-  writer->String("meal_");  // DO NOT MODIFY
+  writer->String("meal_");
   std::string meal;
 
   meal = record.GetMeal();
   writer->String(meal.c_str());
 
-  writer->String("food_name_");  // DO NOT MODIFY
+  writer->String("food_name_");
   std::string food_name;
 
   food_name = record.GetFoodName();
   writer->String(food_name.c_str());
 
-  writer->String("qty_in_oz_");  // DO NOT MODIFY
+  writer->String("qty_in_oz_");
   double quantity;
 
   quantity = record.GetQuantityInOz();
   writer->Double(quantity);
 
-  writer->String("leftover_reason_");  // DO NOT MODIFY
+  writer->String("leftover_reason_");
   std::string leftover_reason;
 
   leftover_reason = record.GetLeftoverReason();
   writer->String(leftover_reason.c_str());
 
-  writer->String("disposal_mechanism_");  // DO NOT MODIFY
+  writer->String("disposal_mechanism_");
   std::string disposal_mechanism;
 
   disposal_mechanism = record.GetDisposalMechanism();
   writer->String(disposal_mechanism.c_str());
 
-  writer->String("cost_");  // DO NOT MODIFY
+  writer->String("cost_");
   double cost;
 
   cost = record.GetCost();

@@ -1,12 +1,6 @@
 #ifndef LEFTOVER_REPORT_H_
 #define LEFTOVER_REPORT_H_
 
-// <Gianna Davila>
-// <CPSC 121L-15> (e.g. CPSC 121L-01)
-// <2/26/24>
-// <dgianna@csu.fullerton.edu>
-// <dgianna707>
-//
 #include <algorithm>
 #include <iostream>
 #include <iterator>
